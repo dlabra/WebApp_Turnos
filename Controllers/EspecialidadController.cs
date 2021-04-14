@@ -79,7 +79,7 @@ namespace Turnos.Controllers
         {
             var especialidad = await _context.Especialidad.FindAsync(id);
             _context.Especialidad.Remove(especialidad);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
             return RedirectToAction(nameof(Index));
         }

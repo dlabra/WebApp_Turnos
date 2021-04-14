@@ -1,4 +1,8 @@
 
 bin
 obj
-.vs
+**/.vs/Turnos/
+**/bin/Debug/
+**/bin/Release/
+*.v2
+*.suo

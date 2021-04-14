@@ -1,0 +1,26 @@
+@model Turnos.Models.Paciente
+
+<h3>Esta seguro que desea eliminar?</h3>
+<div>
+    <dl>
+        <dt>
+            @Html.DisplayNameFor(modelo => modelo.Nombre)
+        </dt>
+        <dd>
+            @Html.DisplayFor(modelo => modelo.Nombre)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(modelo => modelo.Apellido)
+        </dt>
+        <dd>
+            @Html.DisplayFor(modelo => modelo.Apellido)
+        </dd>
+    </dl>
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="IdPaciente" />
+        <input type="submit" value="Eliminar" />
+    </form>
+    <div>
+        <a asp-action="Index">Volver</a>
+    </div>
+</div>
