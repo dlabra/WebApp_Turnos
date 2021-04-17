@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Turnos.Models;
 
 namespace Turnos.Migrations
 {
     [DbContext(typeof(TurnosContext))]
-    partial class TurnosContextModelSnapshot : ModelSnapshot
+    [Migration("20210414191654_MigracionMedicoEspecialidad")]
+    partial class MigracionMedicoEspecialidad
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -99,7 +101,7 @@ namespace Turnos.Migrations
 
                     b.HasIndex("IdEspecialidad");
 
-                    b.ToTable("MedicoEspecialidad");
+                    b.ToTable("MedicoEspecialidads");
                 });
 
             modelBuilder.Entity("Turnos.Models.Paciente", b =>

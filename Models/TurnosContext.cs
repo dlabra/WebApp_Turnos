@@ -19,6 +19,7 @@ namespace Turnos.Models
         public DbSet<Especialidad> Especialidad { get; set; }
         public DbSet<Paciente> Paciente { get; set; }
         public DbSet<Medico> Medico { get; set; }
+        public DbSet<MedicoEspecialidad> MedicoEspecialidad { get; set; }
 
         //protected para que sea un metodo protegido, override le decimos al metodo base (OnModelCreating) sera sobreescribo por lo que estara abajo
         //OnModelCreating sirve para dar la estructura de la tabla en la BD al momento de crearle mediante migration
@@ -61,6 +62,18 @@ namespace Turnos.Models
 
 
             });
+
+            //tabla especialidad medico, relacion
+            //establecemos las foreingkey entre medico y especialidad mediante migration
+            modelBuilder.Entity<MedicoEspecialidad>().HasKey(x => new { x.IdMedico, x.IdEspecialidad });
+
+            modelBuilder.Entity<MedicoEspecialidad>().HasOne(x => x.Medico)
+            .WithMany(p => p.MedicoEspecialidad)
+            .HasForeignKey(p => p.IdMedico);
+
+            modelBuilder.Entity<MedicoEspecialidad>().HasOne(x => x.Especialidad)
+            .WithMany(p => p.MedicoEspecialidad)
+            .HasForeignKey(p => p.IdEspecialidad);
         }
     }
 }
