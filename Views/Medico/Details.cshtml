@@ -6,7 +6,7 @@
 
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Details</title>
+    <title>Detalles</title>
 </head>
 
 <body>
@@ -14,60 +14,84 @@
     <div>
         <h4>Medico</h4>
         <hr />
-        <dl class="row">
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Nombre)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Nombre)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Apellido)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Apellido)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Direccion)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Direccion)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Telefono)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Telefono)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Email)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Email)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.HorarioAtencionDesde)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.HorarioAtencionDesde)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.HorarioAtencionHasta)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.HorarioAtencionHasta)
-            </dd>
-            <dt class="col-sm-2">
+        <div class="row">
+            <div class="row">
+                <div class="input-field col s12 m6">
+                    <i class="material-icons prefix">account_circle</i>
+                    <input asp-for="Nombre" type="text" class="validate" disabled>
+                    <label asp-for="Nombre">Nombre</label>
+                    <span asp-validation-for="Nombre"></span>
+                </div>
+                <div class="input-field col s12 m6">
+                    <i class="material-icons prefix"></i>
+                    <input asp-for="Apellido" type="text" class="validate" disabled>
+                    <label asp-for="Apellido">Apellido</label>
+                    <span asp-validation-for="Apellido"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12 m6">
+                    <i class="material-icons prefix">home</i>
+                    <input asp-for="Direccion" type="text" class="validate" disabled>
+                    <label asp-for="Direccion">Direccion</label>
+                    <span asp-validation-for="Direccion"></span>
+                </div>
+                <div class="input-field col s12 m6">
+                    <i class="material-icons prefix">phone</i>
+                    <input asp-for="Telefono" type="text" class="validate" disabled>
+                    <label asp-for="Telefono">Telefono</label>
+                    <span asp-validation-for="Telefono"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12 m6">
+                    <i class="material-icons prefix">email</i>
+                    <input asp-for="Email" type="text" class="validate" disabled>
+                    <label asp-for="Email">Email</label>
+                    <span asp-validation-for="Email"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12 m6">
+                    <i class="material-icons prefix">date_range</i>
+                    <input asp-for="HorarioAtencionDesde" type="text" class="validate" disabled>
+                    <label asp-for="HorarioAtencionDesde">HorarioAtencionDesde</label>
+                    <span asp-validation-for="HorarioAtencionDesde"></span>
+                </div>
+                <div class="input-field col s12 m6">
+                    <i class="material-icons prefix">date_range</i>
+                    <input asp-for="HorarioAtencionHasta" type="text" class="validate" disabled>
+                    <label asp-for="HorarioAtencionHasta">HorarioAtencionHasta</label>
+                    <span asp-validation-for="HorarioAtencionHasta"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12 m6">
+                    <i class="material-icons prefix">star_rate</i>
+                    <input type="text" class="validate" disabled>
+                    <label asp-for="HorarioAtencionHasta">@Html.DisplayFor(model =>
+                        model.MedicoEspecialidad[0].Especialidad.Descripcion)</label>
+                </div>
+            </div>
+            @* <dt class="col-sm-2">
                 @Html.DisplayNameFor(model => model.MedicoEspecialidad[0].Especialidad.Descripcion)
                 </dd>
-            <dd class="col-sm-10">
+                <dd class="col-sm-10">
                 @Html.DisplayFor(model => model.MedicoEspecialidad[0].Especialidad.Descripcion)
-            </dd>
-        </dl>
+                </dd> *@
+        </div>
     </div>
-    <div>
-        <a asp-action="Edit" asp-route-id="@Model.IdMedico">Edit</a> |
-        <a asp-action="Index">Back to List</a>
+    <div class="row">
+        <div class="col s6 m6">
+            <a asp-action="Edit" asp-route-id="@Model.IdMedico" class="waves-effect waves-light btn blue darken-4">
+                <i class="material-icons left">edit</i>Editar
+            </a>
+        </div>
+        <div class="col s6 m6">
+            <a asp-action="Index" class="waves-effect waves-light btn grey darken-4">
+                <i class="material-icons left">undo</i>Volver
+            </a>
+        </div>
     </div>
 </body>
 
