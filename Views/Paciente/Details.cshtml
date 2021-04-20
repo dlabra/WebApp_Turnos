@@ -1,41 +1,53 @@
 @model Turnos.Models.Paciente
 
 <h4>Detalles</h4>
-<div>
-    <dl>
-        <dt>
-            @Html.DisplayNameFor(modelo => modelo.Nombre)
-        </dt>
-        <dd>
-            @Html.DisplayFor(modelo => modelo.Nombre)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(modelo => modelo.Apellido)
-        </dt>
-        <dd>
-            @Html.DisplayFor(modelo => modelo.Apellido)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(modelo => modelo.Direccion)
-        </dt>
-        <dd>
-            @Html.DisplayFor(modelo => modelo.Direccion)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(modelo => modelo.Telefono)
-        </dt>
-        <dd>
-            @Html.DisplayFor(modelo => modelo.Telefono)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(modelo => modelo.Email)
-        </dt>
-        <dd>
-            @Html.DisplayFor(modelo => modelo.Email)
-        </dd>
-    </dl>
+<div class="row">
+    <div class="row">
+        <div class="input-field col s12 m6">
+            <i class="material-icons prefix">account_circle</i>
+            <input asp-for="Nombre" type="text" class="validate" disabled>
+            <label asp-for="Nombre">Nombre</label>
+            <span asp-validation-for="Nombre"></span>
+        </div>
+        <div class="input-field col s12 m6">
+            <i class="material-icons prefix"></i>
+            <input asp-for="Apellido" type="text" class="validate" disabled>
+            <label asp-for="Apellido">Apellido</label>
+            <span asp-validation-for="Apellido"></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="input-field col s12 m6">
+            <i class="material-icons prefix">home</i>
+            <input asp-for="Direccion" type="text" class="validate" disabled>
+            <label asp-for="Direccion">Direccion</label>
+            <span asp-validation-for="Direccion"></span>
+        </div>
+        <div class="input-field col s12 m6">
+            <i class="material-icons prefix">phone</i>
+            <input asp-for="Telefono" type="text" class="validate" disabled>
+            <label asp-for="Telefono">Telefono</label>
+            <span asp-validation-for="Telefono"></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="input-field col s12 m6">
+            <i class="material-icons prefix">email</i>
+            <input asp-for="Email" type="text" class="validate" disabled>
+            <label asp-for="Email">Email</label>
+            <span asp-validation-for="Email"></span>
+        </div>
+    </div>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.IdPaciente">Editar</a> |
-    <a asp-action="Index">Volver</a>
+<div class="row">
+    <div class="col s6 m6">
+        <a asp-action="Edit" asp-route-id="@Model.IdPaciente" class="waves-effect waves-light btn blue darken-4">
+            <i class="material-icons left">edit</i>Editar
+        </a>
+    </div>
+    <div class="col s6 m6">
+        <a asp-action="Index" class="waves-effect waves-light btn grey darken-4">
+            <i class="material-icons left">undo</i>Volver
+        </a>
+    </div>
 </div>

@@ -1,26 +1,38 @@
 @model Turnos.Models.Paciente
 
-<h3>Esta seguro que desea eliminar?</h3>
-<div>
-    <dl>
-        <dt>
-            @Html.DisplayNameFor(modelo => modelo.Nombre)
-        </dt>
-        <dd>
-            @Html.DisplayFor(modelo => modelo.Nombre)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(modelo => modelo.Apellido)
-        </dt>
-        <dd>
-            @Html.DisplayFor(modelo => modelo.Apellido)
-        </dd>
-    </dl>
+<h3>Estas seguro que deseas <strong class="red-text">eliminar</strong> al paciente <strong>@Html.DisplayFor(modelo =>
+        modelo.Nombre)
+        @Html.DisplayFor(modelo =>
+        modelo.Apellido)</strong>?</h3>
+<div class="row">
+    <div class="row">
+        <div class="input-field col s12 m6">
+            <i class="material-icons prefix">account_circle</i>
+            <input asp-for="Nombre" type="text" class="validate" disabled>
+            <label asp-for="Nombre">Nombre</label>
+            <span asp-validation-for="Nombre"></span>
+        </div>
+        <div class="input-field col s12 m6">
+            <i class="material-icons prefix"></i>
+            <input asp-for="Apellido" type="text" class="validate" disabled>
+            <label asp-for="Apellido">Apellido</label>
+            <span asp-validation-for="Apellido"></span>
+        </div>
+    </div>
     <form asp-action="Delete">
         <input type="hidden" asp-for="IdPaciente" />
-        <input type="submit" value="Eliminar" />
+        <div class="row">
+            <div class="col s6 m6">
+                <button class="btn waves-effect waves-light red accent-4" type="submit" name="action">Eliminar
+                    <i class="material-icons right">delete</i>
+                </button>
+            </div>
+
+            <div class="col s6 m6">
+                <a asp-action="Index" class="waves-effect waves-light btn grey darken-4">
+                    <i class="material-icons left">undo</i>Volver
+                </a>
+            </div>
+        </div>
     </form>
-    <div>
-        <a asp-action="Index">Volver</a>
-    </div>
 </div>
