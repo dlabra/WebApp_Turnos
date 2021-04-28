@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Turnos.Models
@@ -27,6 +28,8 @@ namespace Turnos.Models
         [EmailAddress(ErrorMessage = "No es un email valido")]
         [StringLength(100, ErrorMessage = "El campo email debe tener máximo 100 caracteres")]
         public string Email { get; set; }
+
+        public List<Turno> Turno { get; set; }
 
 
     }
