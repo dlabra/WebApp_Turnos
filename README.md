@@ -4,3 +4,8 @@
  comandos:
  - Para migrar db:  dotnet ef migrations add Migracion -> dotnet ef database update
  - Para iniciar la app: dotnet watch run
+
+
+
+ Link publicado: http://karnac-001-site1.itempurl.com/
+ Pagina de hosting: smarterasp.net
