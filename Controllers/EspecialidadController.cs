@@ -90,6 +90,7 @@ namespace Turnos.Controllers
         }
 
         [HttpPost]
+        //[ValidateAntiForgeryToken] //Valida los token enviados desde el formulario
         public async Task<IActionResult> Create([Bind("Id, Descripcion")] Especialidad especialidad)
         {
             if (ModelState.IsValid)

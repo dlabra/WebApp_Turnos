@@ -1,4 +1,12 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Http;
+@{
+    @* Validamos que la sesion este iniciado para ingresar a todas las paginas *@
+    if (Context.Session.GetString("usuario") == null)
+    {
+        Context.Response.Redirect("/Login");
+    }
+}
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -24,6 +32,7 @@
                     <li><a asp-controller="Paciente" asp-action="Index">Paciente</a></li>
                     <li><a asp-controller="Medico" asp-action="Index">Medico</a></li>
                     <li><a asp-controller="Turno" asp-action="Index">Turnos</a></li>
+                    <li><a asp-controller="Login" asp-action="Logout">Cerrar Sesion</a></li>
                 </ul>
             </div>
         </nav>
@@ -34,6 +43,7 @@
             <li><a asp-controller="Paciente" asp-action="Index">Paciente</a></li>
             <li><a asp-controller="Medico" asp-action="Index">Medico</a></li>
             <li><a asp-controller="Turno" asp-action="Index">Turnos</a></li>
+            <li><a asp-controller="Login" asp-action="Logout">Cerrar Sesion</a></li>
         </ul>
 
     </header>

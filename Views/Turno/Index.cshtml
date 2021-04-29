@@ -1,5 +1,7 @@
 @model Turnos.Models.Turno
-
+@* como esta pagina no tiene form y manejamos todo con ajax, lo forzamos a generar el elemto token con AntiForgeryToken
+*@
+@Html.AntiForgeryToken()
 @{
     ViewBag.Title = "Asignacion de turnos";
 }
@@ -71,6 +73,7 @@
                 type: "GET",
                 url: "Turno/ObtenerTurnos",
                 data: { 'IdMedico': idMedico },
+                headers: { 'RequestVerificationToken': $('input[name="__RequestVerificationToken"]').val() }, //para obtener el valor del elemento oculto token quye se genero por el middlware
                 success: function (datos) {
                     $.each(datos, function (i, v) {
                         //poner las iniciales en minusculas
@@ -192,6 +195,7 @@
                 type: "POST",
                 url: 'Turno/GrabarTurno',
                 data: { 'turno': datosDelTurno },
+                headers: { 'RequestVerificationToken': $('input[name="__RequestVerificationToken"]').val() }, //para obtener el valor del elemento oculto token quye se genero por el middlware
                 success: function (e) {
                     if (e.ok) {
                         ObtenerTurnosYActualizar(($('#IdMedico').val()));
@@ -210,6 +214,7 @@
                     type: "POST",
                     url: 'Turno/EliminarTurno',
                     data: { 'IdTurno': turnoSeleccionado.idTurno },
+                    headers: { 'RequestVerificationToken': $('input[name="__RequestVerificationToken"]').val() }, //para obtener el valor del elemento oculto token quye se genero por el middlware
                     success: function (e) {
                         if (e.ok) {
                             ObtenerTurnosYActualizar(($('#IdMedico').val()));

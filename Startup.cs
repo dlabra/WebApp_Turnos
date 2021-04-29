@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -25,7 +26,21 @@ namespace Turnos
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+            //para establecer un middleware para el manejo de la sesion
+            // y le establecemos las propiedades
+            //option.Cookie.HttpOnly = true; almacena la cookie en el navegador, no es equipo del usuario
+            services.AddSession(option =>
+            {
+                option.IdleTimeout = TimeSpan.FromSeconds(300);
+                option.Cookie.HttpOnly = true;
+            });
+
+            services.AddControllersWithViews(options =>
+                //en vez de agregar ValidateAntiForgeryToken a todos los metodos post
+                //implementamos este middleware que se encarga de validar todos los meotodos de tipo POST
+                //quueda la validacion Global
+                options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute())
+            );
 
             //creamos la conexion a la BD Sql, donde le especificamos el contexto de nuestr abd
             // => igual operador lamda , define opciones como parametro
@@ -54,12 +69,14 @@ namespace Turnos
 
             app.UseAuthorization();
 
+            app.UseSession();
+
             //Estable cual es el controlador por default y patron para abrirlo
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Login}/{action=Index}/{id?}");
             });
         }
     }

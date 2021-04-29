@@ -22,6 +22,8 @@ namespace Turnos.Models
         public DbSet<MedicoEspecialidad> MedicoEspecialidad { get; set; }
         public DbSet<Turno> Turno { get; set; }
 
+        public DbSet<Login> Login { get; set; }
+
         //protected para que sea un metodo protegido, override le decimos al metodo base (OnModelCreating) sera sobreescribo por lo que estara abajo
         //OnModelCreating sirve para dar la estructura de la tabla en la BD al momento de crearle mediante migration
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -94,6 +96,16 @@ namespace Turnos.Models
             modelBuilder.Entity<Turno>().HasOne(x => x.Medico)
             .WithMany(p => p.Turno)
             .HasForeignKey(p => p.IdMedico);
+
+            modelBuilder.Entity<Login>(
+                entidad =>
+                {
+                    entidad.ToTable("Login");
+                    entidad.HasKey(e => e.LoginId);
+                    entidad.Property(e => e.Usuario).IsRequired().HasMaxLength(50).IsUnicode(false);
+                    entidad.Property(e => e.Password).IsRequired().HasMaxLength(100).IsUnicode(false);
+                }
+            );
         }
     }
 }
